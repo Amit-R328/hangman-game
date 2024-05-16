@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Location } from '@angular/common';
 
 @Component({
@@ -7,19 +7,20 @@ import { Location } from '@angular/common';
   styleUrls: ['./how-to-play.component.scss']
 })
 export class HowToPlayComponent {
-
+  
   constructor(
     private readonly location: Location
   ) {}
+
 
   onBack() {
     this.location.back();
   }
 
-  @HostListener('document:keydown', ['$event'])
+  @HostListener('window:keydown', ['$event'])
   onKeydown(e: KeyboardEvent) {
-    if(e.key === "Escape") this.location.back();
-    else return;
+    if(e.key === "Escape") this.onBack();
+    e.preventDefault(); //Prevent the default action of the Escape key
   }
 
 }

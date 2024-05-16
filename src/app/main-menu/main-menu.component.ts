@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,15 +6,17 @@ import { Router } from '@angular/router';
   templateUrl: './main-menu.component.html',
   styleUrls: ['./main-menu.component.scss']
 })
-export class MainMenuComponent implements OnInit {
+export class MainMenuComponent {
 
   constructor(private router: Router) { }
 
-  ngOnInit(): void {
+  @HostListener('document:keydown', ['$event'])
+  onKeydown(e: KeyboardEvent) {
+    if(e.key === "Enter") this.onPlay();
+    else if(e.key === "Tab") this.openHowToPlay();
   }
 
   openHowToPlay () {
-    console.log('here');
     this.router.navigate(['/rules']);
   }
 
