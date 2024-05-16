@@ -1,4 +1,17 @@
 :host {
     display: block;
     height: 100vh;
-}
+    display: flex;
+    flex-direction: column;
+  
+    .top {
+      display: flex;
+      flex-direction: row;
+      
+      .back-wrapper {
+        width: (202 / 1887) * 100% ;
+        height: (202 / 1887) * 100%;
+      }
+    }
+  }
+  
