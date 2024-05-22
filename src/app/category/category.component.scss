@@ -1,0 +1,38 @@
+@font-face {
+    font-family: mouse-memoirs;
+    src: url(../../assets/fonts/MouseMemoirs-Regular.ttf);
+  }
+  
+  :host {
+      display: block;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      gap: 220px;
+    
+      .top {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 1rem 2rem;
+  
+      .title-wrapper{
+          margin: 0 auto;
+          
+          .title {
+            height: 136px;
+          }
+      }
+        
+        .back-wrapper {
+          flex-grow: 0;
+          width: 100px;
+          height: 100px;
+          background: linear-gradient(180deg, rgba(254,113,254,1) 0%, rgba(113,153,255,1) 100%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 100%;
+        }
+      }
+    }

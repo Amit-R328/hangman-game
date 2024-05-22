@@ -1,1 +1,13 @@
-<p>category works!</p>
+<div class="top">
+    <div class="back-wrapper" (click)="onBack()">
+      <img class="backIcon-wrapper" src="https://res.cloudinary.com/dcbbqlssh/image/upload/v1715593073/FEMentors/icon-back_rpnzgw.svg" alt="back">
+    </div>
+    <div class="title-wrapper">
+      <img class="title" src="https://res.cloudinary.com/dcbbqlssh/image/upload/v1716388188/FEMentors/Pick_a_Category_y9h1iw.png" alt="Title">
+    </div>
+</div>
+<div class="bottom">
+    <div *ngFor="let category of categories" class="category" (click)="onSelectCategory(category)">
+        {{ category }}
+    </div>
+</div>
