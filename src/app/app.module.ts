@@ -10,6 +10,9 @@ import { PauseMenuComponent } from './pause-menu/pause-menu.component';
 import { CategoryComponent } from './category/category.component';
 import { HowToPlayComponent } from './how-to-play/how-to-play.component';
 import { reducers } from './store/reducers';
+import { HttpClientModule } from '@angular/common/http';
+import { CategoryService } from './category.service';
+import { CategoryEffects } from './store/effects/category.effects';
 
 @NgModule({
   declarations: [
@@ -23,10 +26,11 @@ import { reducers } from './store/reducers';
   imports: [
     BrowserModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([]),
-    AppRoutingModule
+    EffectsModule.forRoot([CategoryEffects]),
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [CategoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

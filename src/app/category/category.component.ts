@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { categoryReducer } from '../store/reducers/category.reducer';
-import { getSelectedCategory } from '../store/selectors/category.selectors';
-import { selectCategory } from '../store/actions/category.actions';
+import { getSelectedCategory, selectAllCategories } from '../store/selectors/category.selectors';
+import { loadCategories, selectCategory } from '../store/actions/category.actions';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
+import { CategoryState } from '../store/models/category.model';
 
 @Component({
   selector: 'app-category',
@@ -12,27 +14,33 @@ import { Location } from '@angular/common';
   styleUrls: ['./category.component.scss']
 })
 export class CategoryComponent implements OnInit {
-  categories = ['Movies', 'TV Shows', 'Countries', 'Capital Cities', 'Animals', 'Sports'];
+  categories$: Observable<string[]>;
   selectedCategory$: Observable<string | null>;
   
-  constructor(private store: Store<{ 
-    category: typeof categoryReducer }>,
-    private readonly location: Location
+  constructor(private store: Store<CategoryState>,
+    private readonly location: Location,
+    private router: Router
   ) {
+    this.categories$ = this.store.select(selectAllCategories)
     this.selectedCategory$ = this.store.pipe(select(getSelectedCategory));
    }
 
   ngOnInit(): void {
-    this.selectedCategory$.subscribe(category => {
-      console.log('Selected Category:', category);
-    });
+    this.store.dispatch(loadCategories());
   }
 
   onSelectCategory(category: string) {
     this.store.dispatch(selectCategory({ category }));
+    this.router.navigate(['/game']);
   }
 
   onBack() {
     this.location.back();
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  onKeydown(e: KeyboardEvent) {
+    if(e.key === "Escape") this.onBack();
+    e.preventDefault(); //Prevent the default action of the Escape key
   }
 }

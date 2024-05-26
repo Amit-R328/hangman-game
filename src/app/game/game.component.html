@@ -1,1 +1,24 @@
-<p>game works!</p>
+<div class="top">
+    <div class="left">
+        <div class="settings-wrapper">
+            <img class="settings" src="https://res.cloudinary.com/dcbbqlssh/image/upload/v1715593074/FEMentors/icon-menu_oo21rt.svg" alt="settings">
+        </div>
+        <div class="category-wrapper">
+            <h3 class="category">{{ selectedCategory$ | async }}</h3>
+        </div>
+    </div>
+    <div class="right">
+        <button (click)="onWrongGuess()">Wrong Guess</button> <!-- Example button for testing -->
+        <div class="lives-meter">
+            <div class="lives-bar" [style.width.%]="livesPercentage"></div>
+        </div>
+        <div class="heart-wrapper">
+            <img class="heart" src="https://res.cloudinary.com/dcbbqlssh/image/upload/v1715593073/FEMentors/icon-heart_pg5zb7.svg" alt="heart"/>
+        </div>
+    </div>
+</div>
+<div class="bottom">
+    <div>
+        
+    </div>
+</div>
