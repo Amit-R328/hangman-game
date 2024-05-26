@@ -4,7 +4,7 @@ export const loadCategories = createAction('[Category] Load Categories');
 
 export const loadCategoriesSuccess = createAction(
   '[Category] Load Categories Success',
-  props<{ categories: string[] }>()
+  props<{ categories: { [key: string]: { name: string; selected: boolean }[] } }>()
 );
 
 export const loadCategoriesFailure = createAction(

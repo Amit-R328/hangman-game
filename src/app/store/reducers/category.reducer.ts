@@ -3,7 +3,7 @@ import { CategoryState } from '../models/category.model';
 import * as CategoryActions from '../actions/category.actions';
 
 export const initialState: CategoryState = {
-  categories: [],
+  categories: {},
   selectedCategory: null,
 };
 

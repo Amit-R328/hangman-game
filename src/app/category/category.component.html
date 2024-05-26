@@ -7,7 +7,7 @@
     </div>
 </div>
 <div class="bottom">
-    <div *ngFor="let category of categories$ | async" class="category" (click)="onSelectCategory(category)">
-        {{ category }}
+  <div *ngFor="let category of (categories$ | async) | keyvalue" class="category" (click)="onSelectCategory(category.key)">
+        {{ category.key }}
     </div>
 </div>

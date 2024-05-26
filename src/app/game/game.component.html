@@ -18,7 +18,12 @@
     </div>
 </div>
 <div class="bottom">
-    <div>
-        
+    <div class="word-display">
+        <span *ngFor="let letter of displayedWord">{{ letter }}</span>
+    </div>
+    <div class="alphabet">
+        <button *ngFor="let letter of alphabet" (click)="onGuess(letter)">
+            {{ letter }} 
+        </button>
     </div>
 </div>

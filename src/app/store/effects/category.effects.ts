@@ -16,7 +16,7 @@ export class CategoryEffects {
             mergeMap(() => 
                 this.categoryService.getCategories().pipe(
                     map(data => {
-                        const categories = Object.keys(data.categories); 
+                        const categories = data.categories; 
                         return CategoryActions.loadCategoriesSuccess({ categories });
                     }),
                     catchError(error => of(CategoryActions.loadCategoriesFailure({ error })))

@@ -14,7 +14,7 @@ import { CategoryState } from '../store/models/category.model';
   styleUrls: ['./category.component.scss']
 })
 export class CategoryComponent implements OnInit {
-  categories$: Observable<string[]>;
+  categories$: Observable<{ [key: string]: { name: string; selected: boolean }[] }>;
   selectedCategory$: Observable<string | null>;
   
   constructor(private store: Store<CategoryState>,

@@ -1,4 +1,4 @@
 export interface CategoryState {
-    categories: string[];
+    categories: { [key: string]: { name: string; selected: boolean }[] };
     selectedCategory: string | null;
 }  
