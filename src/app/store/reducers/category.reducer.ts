@@ -10,5 +10,13 @@ export const initialState: CategoryState = {
 export const categoryReducer = createReducer(
   initialState,
   on(CategoryActions.loadCategoriesSuccess, (state, { categories }) => ({ ...state, categories })),
-  on(CategoryActions.selectCategory, (state, { category }) => ({ ...state, selectedCategory: category }))
+  on(CategoryActions.selectCategory, (state, { category }) => ({ ...state, selectedCategory: category })),
+  on(CategoryActions.updateSelectedStatus, (state, { category, itemName, selected }) => {
+    const updatedCategories = { ...state.categories };
+    const categoryItems = updatedCategories[category].map(item => 
+      item.name === itemName ? { ...item, selected } : item
+    );
+    updatedCategories[category] = categoryItems;
+    return { ...state, categories: updatedCategories };
+  })
 );

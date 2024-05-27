@@ -19,10 +19,15 @@
 </div>
 <div class="bottom">
     <div class="word-display">
-        <span *ngFor="let letter of displayedWord">{{ letter }}</span>
+        <div *ngFor="let word of displayedWord; let i = index" class="word-line">
+            <span *ngFor="let letter of word; let j = index">
+                {{ letter !== ' ' ? (displayedWord[i][j] === '_' ? '_' : letter) : '' }}
+            </span>
+            <br *ngIf="i < displayedWord.length - 1"> 
+        </div>
     </div>
     <div class="alphabet">
-        <button *ngFor="let letter of alphabet" (click)="onGuess(letter)">
+        <button *ngFor="let letter of alphabet" (click)="onGuess(letter)" [disabled]="pickedLetters.includes(letter)">
             {{ letter }} 
         </button>
     </div>

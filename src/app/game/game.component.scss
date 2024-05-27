@@ -60,4 +60,16 @@
             }
         }  
     }
+    .bottom {
+        .word-display {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-direction: column;
+            .letter {
+                display: flex;
+                flex-direction: row;
+            }
+        }
     }
+}

@@ -16,3 +16,8 @@ export const selectCategory = createAction(
   '[Category] Select',
   props<{ category: string }>()
 );
+
+export const updateSelectedStatus = createAction(
+  '[Category] update selected status',
+  props<{ category: string, itemName: string, selected: boolean }>()
+);
