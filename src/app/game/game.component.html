@@ -20,8 +20,11 @@
 <div class="bottom">
     <div class="word-display">
         <div *ngFor="let word of displayedWord; let i = index" class="word-line">
-            <span *ngFor="let letter of word; let j = index">
-                {{ letter !== ' ' ? (displayedWord[i][j] === '_' ? '_' : letter) : '' }}
+            <span *ngFor="let letter of word; let j = index"
+            [class.guessed]="letter !== '_'" 
+            [class.not-guessed]="letter === '_'"
+            >
+                {{ letter !== ' ' ? (displayedWord[i][j] === '_' ? '' : letter) : '' }}
             </span>
             <br *ngIf="i < displayedWord.length - 1"> 
         </div>
