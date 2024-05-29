@@ -1,8 +1,8 @@
 
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { Observable, Subscription,} from 'rxjs';
-import { take } from 'rxjs/operators';
+import { Observable, Subscription, combineLatest} from 'rxjs';
+import { take, filter } from 'rxjs/operators';
 import { categoryReducer } from '../store/reducers/category.reducer';
 import { getSelectedCategory, selectAllCategories } from '../store/selectors/category.selectors';
 import { loadCategories, updateSelectedStatus } from '../store/actions/category.actions';
@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 })
 export class GameComponent implements OnInit, OnDestroy {
   categories$: Observable<{ [key: string]: { name: string; selected: boolean }[] }>;
+  category: string = '';
   selectedCategory$: Observable<string | null>;
   alphabet: string[];
   currentWord: string = '';
@@ -38,18 +39,38 @@ export class GameComponent implements OnInit, OnDestroy {
     this.alphabet = this.generateAlphabet();
    }
 
-  ngOnInit(): void {
+   ngOnInit(): void {
     this.store.dispatch(loadCategories());
-    const sub = this.selectedCategory$.subscribe(category => {
+    
+    const sub = combineLatest([
+      this.categories$.pipe(filter(categories => Object.keys(categories).length > 0)),
+      this.selectedCategory$
+    ])
+    .pipe(take(1))
+    .subscribe(([categories, category]) => {
       if (category) {
-        this.selectWord(category);
+        this.category = category;
+      } else {
+        this.category = 'Capital Cities'; 
       }
+      this.selectWord(this.category);
     });
+    
     this.subscriptions.push(sub);
   }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    const letter = event.key.toUpperCase();
+    if (this.alphabet.includes(letter) && !this.pickedLetters.includes(letter)) {
+      this.onGuess(letter);
+    }else if (event.key === 'Escape') {
+      this.paueGame();
+    }
   }
 
   generateAlphabet(): string[] {
@@ -59,17 +80,21 @@ export class GameComponent implements OnInit, OnDestroy {
   selectWord(category: string): void {
     this.categories$.pipe(take(1)).subscribe((categories) => {
       const categoryData = categories as { [key: string]: { name: string; selected: boolean }[] };
-      const items = categoryData[category].filter(item => !item.selected);
-      if (items.length > 0) {
-        const randomIndex = Math.floor(Math.random() * items.length);
-        const selectedItem = items[randomIndex];
-        this.currentWord = selectedItem.name.toUpperCase();
-        this.displayedWord = this.currentWord.split(' ').map(word => Array(word.length).fill('_'));
+      if (categoryData[category]) {
+        const items = categoryData[category].filter(item => !item.selected);
+        if (items.length > 0) {
+          const randomIndex = Math.floor(Math.random() * items.length);
+          const selectedItem = items[randomIndex];
+          this.currentWord = selectedItem.name.toUpperCase();
+          this.displayedWord = this.currentWord.split(' ').map(word => Array(word.length).fill('_'));
 
-        // Dispatch action to update selected status
-        this.store.dispatch(updateSelectedStatus({ category, itemName: selectedItem.name, selected: true }));
+          // Dispatch action to update selected status
+          this.store.dispatch(updateSelectedStatus({ category, itemName: selectedItem.name, selected: true }));
+        } else {
+          console.log(`No more items in category ${category}`);
+        }
       } else {
-        console.log(`No more items in category ${category}`);
+        console.log(`Category ${category} not found`);
       }
     });
   }
@@ -90,6 +115,7 @@ export class GameComponent implements OnInit, OnDestroy {
         if (char === letter) {
           this.displayedWord[wordIndex][charIndex] = char;
           corrctGuess = true;
+          this.checkGameStatus();
         }
       })
     });
@@ -99,6 +125,8 @@ export class GameComponent implements OnInit, OnDestroy {
   onWrongGuess() {
     if (this.remianingLives > 0) {
       this.remianingLives--;
+    }else {
+      this.onLose();
     }
   }
 
@@ -134,7 +162,7 @@ export class GameComponent implements OnInit, OnDestroy {
 
   onNewCategory(): void {
     this.resetGame();
-    this.router.navigate(['/category']);
+    this.router.navigate(['/categories']);
   }
 
   onQuitGame(): void {
@@ -150,6 +178,7 @@ export class GameComponent implements OnInit, OnDestroy {
     this.isLose = false;
     this.isWin = false;
     this.menuType = 'paused';
+    this.selectWord(this.category);
   }
 
 }

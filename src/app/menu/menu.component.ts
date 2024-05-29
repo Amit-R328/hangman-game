@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
   @Input() menuType: 'paused' | 'lose' | 'win' = 'paused';
-  @Output() cuntinueGame = new EventEmitter<void>();
+  @Output() continueGame = new EventEmitter<void>();
   @Output() playAgain = new EventEmitter<void>();
   @Output() newCategory = new EventEmitter<void>();
   @Output() quitGame = new EventEmitter<void>();
@@ -29,7 +29,7 @@ export class MenuComponent implements OnInit {
   }
 
   onContinueGame() {
-    this.cuntinueGame.emit();
+    this.continueGame.emit();
   }
 
   onPlayAgain() {

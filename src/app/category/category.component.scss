@@ -38,9 +38,9 @@
 
   .bottom {
     display: grid;
-    grid-template-columns: repeat(3, 290px); // Fixed column width
-    gap: 6.5rem; // Adjusted gap between items
-    justify-content: center; // Center the grid within the container
+    grid-template-columns: repeat(3, 290px);
+    gap: 6.5rem;
+    justify-content: center; 
     align-items: center;
 
     .category {
@@ -58,9 +58,12 @@
       align-items: center;
       justify-content: center;
       transition: background-color 0.3s;
-
-      &:hover {
-        background-color: #005BBB;
+      box-shadow: inset 6px 11px 0px -4px #3C74FF, inset -6px 12px 0px -4px #3C74FF;
+      transition: 0.8s;
+      
+      &:hover, &.focused {
+        background-color: rgb(86 132 247 / 80%);;
+        cursor: pointer;
       }
     }
   }

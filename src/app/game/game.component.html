@@ -5,11 +5,10 @@
                 <img class="settings" src="https://res.cloudinary.com/dcbbqlssh/image/upload/v1715593074/FEMentors/icon-menu_oo21rt.svg" alt="settings">
             </div>
             <div class="category-wrapper">
-                <h3 class="category">{{ selectedCategory$ | async }}</h3>
+                <h3 class="category">{{ category }}</h3>
             </div>
         </div>
         <div class="right">
-            <button (click)="onWrongGuess()">Wrong Guess</button> <!-- Example button for testing -->
             <div class="lives-meter">
                 <div class="lives-bar" [style.width.%]="livesPercentage"></div>
             </div>

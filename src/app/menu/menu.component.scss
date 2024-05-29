@@ -11,38 +11,58 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background-color: #1a1a3c; 
+        background:  linear-gradient(0deg, rgba(0, 20, 121, 0.5) 20%, #344aba 69%);
         padding: 2rem;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        border-radius: 80px;
         z-index: 1001;
-      
+        width: 430px;
+        height: 370px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: inset 6px 11px 0px -4px #2463ff, inset -6px 12px 0px -4px #2463ff, inset 7px -18px 0px -4px rgba(20,14,102,1), inset -7px -18px 0px -4px rgba(20,14,102,1);
+
         .title {
-          margin-bottom: 20px;
+          position: absolute;
+          top: -15%;
+          left: 50%;
+          transform: translateX(-50%);
         }
-      
+
+      .menu-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+
         button {
           display: block;
           margin: 10px auto;
-          padding: 10px 20px;
-          font-size: 18px;
+          padding: 10px 55px;
           cursor: pointer;
           border: none;
-          border-radius: 5px;
-          background-color: #4caf50;
+          border-radius: 35px;
+          background-color: #2463FF;
           color: #fff;
+          font-family: 'mouse-memoirs';
+          font-size: 32px;
+          box-shadow: inset 6px 11px 0px -4px #3C74FF, inset -6px 12px 0px -4px #3C74FF;
+          transition: 0.8s;
       
           &:hover {
-            background-color: #45a049;
+            background-color: rgb(86 132 247 / 80%);;
+            cursor: pointer;
           }
         }
       
         button:last-child {
-          background-color: #f44336;
+          background: linear-gradient(180deg, rgba(254,113,254,1) 0%, rgba(113,153,255,1) 100%);
+          box-shadow: inset -2px 9px 0px -4px rgba(0, 0, 0, 0.25), inset -2px 9px 0px -4px rgba(0, 0, 0, 0.25);
       
           &:hover {
-            background-color: #e53935;
+            opacity: 0.8;
           }
         }
-      }
+    }
+    }
 } 

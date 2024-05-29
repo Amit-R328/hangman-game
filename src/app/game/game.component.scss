@@ -11,11 +11,12 @@
     .game-container {
         display: flex;
         flex-direction: column;
-        gap: 150px;
+        gap: 100px;
         .top {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+            margin: 20px;
             .left{
                 margin-top: 20px;
                 display: flex;
@@ -125,6 +126,7 @@
                     }
                     &:hover {
                         background-color: #3c74ff;
+                        color: #fff;
                     }
                 }
             }
