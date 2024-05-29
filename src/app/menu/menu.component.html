@@ -1,0 +1,9 @@
+<div class="menu">
+    <img class="title" [src]="getTitle()" alt="title"/>
+    <div class="menu-buttons">
+        <button *ngIf="menuType === 'paused'" (click)="onContinueGame()">Continue</button>
+        <button *ngIf="menuType !== 'paused'" (click)="onPlayAgain()">Play Again!</button>
+        <button (click)="onNewCategory()">New Category</button>
+        <button (click)="onQuitGame()">Quit Game</button>
+    </div>
+</div>

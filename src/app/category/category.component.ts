@@ -1,7 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { categoryReducer } from '../store/reducers/category.reducer';
 import { getSelectedCategory, selectAllCategories } from '../store/selectors/category.selectors';
 import { loadCategories, selectCategory } from '../store/actions/category.actions';
 import { Location } from '@angular/common';

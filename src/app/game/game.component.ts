@@ -5,7 +5,8 @@ import { Observable, Subscription,} from 'rxjs';
 import { take } from 'rxjs/operators';
 import { categoryReducer } from '../store/reducers/category.reducer';
 import { getSelectedCategory, selectAllCategories } from '../store/selectors/category.selectors';
-import { loadCategories, selectCategory, updateSelectedStatus } from '../store/actions/category.actions';
+import { loadCategories, updateSelectedStatus } from '../store/actions/category.actions';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -23,9 +24,14 @@ export class GameComponent implements OnInit, OnDestroy {
   totalLives: number = 8;
   remianingLives: number = this.totalLives;
   subscriptions: Subscription[] = [];
+  isPaused: boolean = false;
+  isLose: boolean = false;
+  isWin: boolean = false;
+  menuType: 'paused' | 'lose' | 'win'  = 'paused';
 
   constructor(private store: Store<{ 
     category: typeof categoryReducer }>,
+    private router: Router
   ) {
     this.categories$ = this.store.select(selectAllCategories);
     this.selectedCategory$ = this.store.pipe(select(getSelectedCategory));
@@ -94,6 +100,56 @@ export class GameComponent implements OnInit, OnDestroy {
     if (this.remianingLives > 0) {
       this.remianingLives--;
     }
+  }
+
+  checkGameStatus(): void {
+    const isWin = this.displayedWord.every(word => word.every(char => char !== '_'));
+    if (isWin) {
+      this.onWin();
+    }
+  }
+
+  onWin(): void {
+    this.isWin = true;
+    this.menuType = 'win';
+  }
+
+  onLose(): void {
+    this.isLose = true;
+    this.menuType = 'lose';
+  }
+
+  paueGame(): void {
+    this.isPaused = true;
+    this.menuType = 'paused';
+  }
+
+  onContinueGame(): void {
+    this.isPaused = false;
+  }
+
+  onPlayAgain(): void {
+    this.resetGame();
+  }
+
+  onNewCategory(): void {
+    this.resetGame();
+    this.router.navigate(['/category']);
+  }
+
+  onQuitGame(): void {
+    this.router.navigate(['/main-menu']);
+  }
+
+  resetGame(): void {
+    this.currentWord = '';
+    this.displayedWord = [];
+    this.pickedLetters = [];
+    this.remianingLives = this.totalLives;
+    this.isPaused = false;
+    this.isLose = false;
+    this.isWin = false;
+    this.menuType = 'paused';
   }
 
 }

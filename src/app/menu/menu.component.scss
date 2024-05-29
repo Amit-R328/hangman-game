@@ -1,0 +1,48 @@
+:host {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(21, 18, 120, 0.8); 
+    z-index: 1000;
+    .menu {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #1a1a3c; 
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        z-index: 1001;
+      
+        .title {
+          margin-bottom: 20px;
+        }
+      
+        button {
+          display: block;
+          margin: 10px auto;
+          padding: 10px 20px;
+          font-size: 18px;
+          cursor: pointer;
+          border: none;
+          border-radius: 5px;
+          background-color: #4caf50;
+          color: #fff;
+      
+          &:hover {
+            background-color: #45a049;
+          }
+        }
+      
+        button:last-child {
+          background-color: #f44336;
+      
+          &:hover {
+            background-color: #e53935;
+          }
+        }
+      }
+} 
