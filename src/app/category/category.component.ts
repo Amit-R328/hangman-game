@@ -57,12 +57,14 @@ export class CategoryComponent implements OnInit, OnDestroy{
   setFocusOnCategory(index: number) {
     const categoryElements = document.querySelectorAll('.category');
     if (categoryElements[index]) {
-      (categoryElements[index] as HTMLElement).focus();
+      console.log(categoryElements[index]);
+      (categoryElements[index] as HTMLDivElement).focus();
     }
   }
 
-  onSelectCategory(category: string) {
-    this.store.dispatch(selectCategory({ category }));
+  onSelectCategory(index: number) {
+    const selectedCategory = this.categories[index];
+    this.store.dispatch(selectCategory({ category: selectedCategory }));
     this.router.navigate(['/game']);
   }
 
@@ -82,7 +84,7 @@ export class CategoryComponent implements OnInit, OnDestroy{
         this.focusNextCategory();
         break;
       case 'Enter':
-        this.onSelectCategory(this.categories[this.focusedCategoryIndex]);
+        this.onSelectCategory(this.focusedCategoryIndex);
         break;
       case 'Escape':
         this.onBack();

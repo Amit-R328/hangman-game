@@ -61,7 +61,7 @@
       box-shadow: inset 6px 11px 0px -4px #3C74FF, inset -6px 12px 0px -4px #3C74FF;
       transition: 0.8s;
       
-      &:hover, &.focused {
+      &:hover, &:focus {
         background-color: rgb(86 132 247 / 80%);;
         cursor: pointer;
       }

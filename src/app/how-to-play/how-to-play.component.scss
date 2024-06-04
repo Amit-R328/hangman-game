@@ -8,13 +8,14 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: 220px;
+    gap: 165px;
   
     .top {
       display: flex;
       flex-direction: row;
       align-items: center;
       padding: 1rem 2rem;
+      margin-top: 30px;
 
     .title-wrapper{
         margin: 0 auto;
@@ -52,7 +53,7 @@
 
            h1 {
             font-size: 83px;
-            margin: unset;
+            margin: 20px 0px 0px 0px;
             color: #2463FF;
            }
 
@@ -64,6 +65,7 @@
            p {
             font-size: 32px;
             color: #887DC0;
+            margin: unset;
            }
         }
     }

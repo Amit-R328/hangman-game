@@ -7,7 +7,13 @@
     </div>
 </div>
 <div class="bottom">
-  <div *ngFor="let category of (categories$ | async) | keyvalue" class="category" (click)="onSelectCategory(category.key)">
-        {{ category.key }}
+  <div *ngFor="let category of categories; let i = index"
+        class="category" 
+        [attr.data-index]="i"
+        [class.focused]="i === focusedCategoryIndex"
+        (click)="onSelectCategory(i)"
+        (focus)="focusedCategoryIndex = i"
+        tabindex="0">
+        {{ category }}
     </div>
 </div>
