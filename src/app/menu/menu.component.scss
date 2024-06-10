@@ -1,3 +1,5 @@
+@import '../../variables';
+
 :host {
     position: fixed;
     top: 0;
@@ -20,7 +22,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: inset 6px 11px 0px -4px #2463ff, inset -6px 12px 0px -4px #2463ff, inset 7px -18px 0px -4px rgba(20,14,102,1), inset -7px -18px 0px -4px rgba(20,14,102,1);
+        box-shadow: inset 6px 11px 0px -4px $blue, inset -6px 12px 0px -4px $blue, inset 7px -18px 0px -4px rgba(20,14,102,1), inset -7px -18px 0px -4px rgba(20,14,102,1);
 
         .title {
           position: absolute;
@@ -44,7 +46,7 @@
           border-radius: 35px;
           background-color: #2463FF;
           color: #fff;
-          font-family: 'mouse-memoirs';
+          font-family: $font;
           font-size: 32px;
           box-shadow: inset 6px 11px 0px -4px #3C74FF, inset -6px 12px 0px -4px #3C74FF;
           transition: 0.8s;

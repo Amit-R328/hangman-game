@@ -1,13 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
-@font-face {
-    font-family: mouse-memoirs;
-    src: url(./assets/fonts/MouseMemoirs-Regular.ttf);
-}
+@import "variables";
 
 body {
     background-image: url("https://res.cloudinary.com/dcbbqlssh/image/upload/v1715593072/FEMentors/background-desktop_lqusmb.svg");  
     background-repeat: no-repeat;
     background-size: cover;
-    background-position-y: 70%;
     margin: unset;
-}
+    
+    @include respond-to(tablet) {
+        background-image: url("https://res.cloudinary.com/dcbbqlssh/image/upload/v1715593072/FEMentors/background-tablet_fce8xw.svg");
+    }
+
+    @include respond-to(phone) {
+        background-image: url("https://res.cloudinary.com/dcbbqlssh/image/upload/v1715593073/FEMentors/background-mobile_pcaspc.svg");
+    }
+}       

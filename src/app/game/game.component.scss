@@ -1,7 +1,4 @@
-@font-face {
-    font-family: mouse-memoirs;
-    src: url(../../assets/fonts/MouseMemoirs-Regular.ttf);
-}
+@import '../../_variables.scss';
   
   :host {
     background-color: rgba(40, 43, 150, .5);
@@ -12,13 +9,28 @@
         display: flex;
         flex-direction: column;
         gap: 100px;
+
+        @include respond-to(phone) {
+            gap: clamp(20px, 65px, 100px);
+        }
+
         .top {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             margin: 20px;
+
+            @include respond-to(phone) {
+                margin: unset;
+            }
+
             .left{
                 margin-top: 20px;
+
+                @include respond-to(phone) {
+                    margin-top: unset;
+                }
+
                 display: flex;
                 gap: 20px;
                 align-items: center;
@@ -26,17 +38,32 @@
                     flex-grow: 0;
                     width: 100px;
                     height: 100px;
+
+                    @include respond-to(phone) {
+                        width: 50px;
+                        height: 50px;
+                    }
+
                     background: linear-gradient(180deg, rgba(254,113,254,1) 0%, rgba(113,153,255,1) 100%);
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     border-radius: 100%;
                     margin-left: 10px;
+
+                    img {
+                        width: 50%;
+                    }
                 }
                 .category-wrapper {
-                    font-family: 'mouse-memoirs';
+                    font-family: $font;
                     font-size: 48px;
-                    color: #fff;
+
+                    @include respond-to(phone) {
+                        font-size: 40px;
+                    }
+
+                    color: $white;
                 }
             }
             .right {
@@ -45,21 +72,43 @@
                 gap: 20px;
                 align-items: center;
                 margin-right: 20px;
+
+                @include respond-to(phone) {
+                    margin-right: unset;
+                    gap: unset;
+                }
+
                 .lives-meter {
                     width: 100px;
                     height: 20px;
-                    background-color: #fff;
+                    background-color: $white;
                     border-radius: 10px;
                     overflow: hidden;
                     margin-right: 20px;
                     padding: 5px;
                     display: flex;
                     align-items: center;
+                
+                    @include respond-to(phone) {
+                        margin-right: 10px;
+                        width: 60px;
+                        height: 10px;
+                        padding: 3px;
+                    }
+
                     .lives-bar {
                         height: 60%;
-                        background-color: #261676;
+                        background-color: $dark-navy;
                         transition: width 0.3s ease;
                         border-radius: 10px;
+                    }
+                }
+
+                .heart-wrapper {
+                    img {
+                        @include respond-to(phone) {
+                            width: 50px;
+                        }
                     }
                 }
             }  
@@ -69,27 +118,45 @@
             flex-direction: column;
             align-items: center;
             gap: 65px;
+            margin-bottom: 40px;
+
+            @include respond-to(phone) {
+                gap: clamp(20px, 40px, 65px);
+                margin-bottom: 20px;
+            }
             .word-display {
                 display: flex;
                 align-items: center;
                 margin-bottom: 20px;
                 flex-direction: column;
-                gap: 10px;
-                font-family: 'mouse-memoirs';
+                gap: 12px;
+                font-family: $font;
                 font-size: 64px;
-                color: #fff;
+
+                @include respond-to(phone) {
+                    font-size: 40px;
+                }
+
+                color: $white;
                 .word-line{
                     display: flex;
                     gap: 10px;
                     span {
                         width: 70px;
+
+                        @include respond-to(phone) {
+                            width: 35px;
+                            height: 64px;
+                            border-radius: 12px;
+                        }
+
                         height: 100px;
                         border-radius: 17px;
                         display: flex;
                         align-items: center;
                         justify-content: center;
                         &.guessed {
-                            background-color: #2463FF;
+                            background-color: $blue;
                             -webkit-box-shadow: inset 14px 10px 0px -3px rgba(60,116,255,1);
                             -moz-box-shadow: inset 14px 10px 0px -3px rgba(60,116,255,1);
                             box-shadow: inset 8px 13px 0px -10px #3c74ff, inset -1px 4px 0px 0px #3c74ff;
@@ -105,17 +172,33 @@
                 flex-wrap: wrap;
                 gap: 27px;
                 width: 885px;
+
+                @include respond-to(phone) {
+                    margin: 20px;
+                    width: unset;
+                    column-gap: 8px;
+                    row-gap: 24px;
+                }
+
                 button {
                     width: 65px;
                     height: 85px;
+
+                    @include respond-to(phone) {
+                        width: 30px;
+                        height: 57px;
+                        border-radius: 12px;
+                        font-size: 32px
+                    }
+
                     border-radius: 20px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    font-family: "mouse-memoirs";
+                    font-family: $font;
                     font-size: 48px;
-                    color: #261676;
-                    background-color: #fff;
+                    color: $dark-navy;
+                    background-color: $white;
                     cursor: pointer;
                     transition: background-color 0.3s ease;
                     border: none;
@@ -126,7 +209,7 @@
                     }
                     &:hover {
                         background-color: #3c74ff;
-                        color: #fff;
+                        color: $white;
                     }
                 }
             }

@@ -1,7 +1,4 @@
-@font-face {
-  font-family: mouse-memoirs;
-  src: url(../../assets/fonts/MouseMemoirs-Regular.ttf);
-}
+@import '../../variables';
 
 :host {
     display: block;
@@ -49,17 +46,17 @@
            display: flex;
            flex-direction: column;
            align-items: center;
-           font-family: mouse-memoirs;
+           font-family: $font;
 
            h1 {
             font-size: 83px;
             margin: 20px 0px 0px 0px;
-            color: #2463FF;
+            color: $blue;
            }
 
            h2 {
             font-size: 48px;
-            color: #261676;
+            color: $dark-navy;
            }
 
            p {

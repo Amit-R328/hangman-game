@@ -1,7 +1,4 @@
-@font-face {
-    font-family: mouse-memoirs;
-    src: url(../../assets/fonts/MouseMemoirs-Regular.ttf);
-}
+@import '../../variables';
 
 :host {
     display: flex;
@@ -18,7 +15,7 @@
             position: relative;
             top: 14%;
             border-radius: 60px;
-            box-shadow: inset 3px -10.8px 2px -0.1px #140E66, 4px 0px 0px 1px #140E66, inset 7px -10px 17px 7px #2463ff;
+            box-shadow: inset 3px -10.8px 2px -0.1px #140E66, 4px 0px 0px 1px #140E66, inset 7px -10px 17px 7px $blue;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -27,11 +24,11 @@
             button {
                 width: 27%;
                 height: 10%;
-                background-color: #2463FF;
+                background-color: $blue;
                 border-radius: 50px;
                 border: none;
-                font-family: mouse-memoirs;
-                color: #FFFFFF;
+                font-family: $font;
+                color: $white;
                 font-size: 32px;
                 box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, inset 0px 2.72px 0px 2.35px rgba(60,116,255,1);
 

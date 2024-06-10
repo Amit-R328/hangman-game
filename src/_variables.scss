@@ -1,0 +1,28 @@
+@use "sass:map";
+
+@font-face {
+    font-family: mouse-memoirs;
+    src: url(./assets/fonts/MouseMemoirs-Regular.ttf);
+}
+    
+$font: 'mouse-memoirs';
+
+$dark-navy: #261676;
+$blue: #2463FF;
+$white: #fff;
+
+$breakpoints: (
+  phone: 425px,
+  tablet: 768px
+  );
+
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+    @media (max-width: $breakpoint-value) {
+      @content;
+    }
+  } @else {
+    @warn "The breakpoint `#{$breakpoint}` is not defined.";
+  }
+}
