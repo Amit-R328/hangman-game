@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
+import { Component, HostListener, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { getSelectedCategory, selectAllCategories } from '../store/selectors/category.selectors';
@@ -12,12 +12,13 @@ import { CategoryState } from '../store/models/category.model';
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss']
 })
-export class CategoryComponent implements OnInit, OnDestroy{
+export class CategoryComponent implements OnInit, OnDestroy, AfterViewInit{
   categories$: Observable<{ [key: string]: { name: string; selected: boolean }[] }>;
   categories: string[] = [];
   selectedCategory$: Observable<string | null>;
-  focusedCategoryIndex: number = 0;
+  focusedCategoryIndex: number | undefined;
   subscriptions: Subscription[] = [];
+  isComponentActive: boolean = false;
 
   constructor(private store: Store<CategoryState>,
     private readonly location: Location,
@@ -29,26 +30,33 @@ export class CategoryComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     this.store.dispatch(loadCategories());
-    this.setFocusOnCategory(this.focusedCategoryIndex);
     const sub = this.categories$.subscribe(categories => {
       this.categories = Object.keys(categories);
     });
     this.subscriptions.push(sub);
   }
 
+  ngAfterViewInit(): void {
+    this.isComponentActive = true;
+  }
+
   ngOnDestroy(): void {
     this.subscriptions.forEach(sub => sub.unsubscribe());
+    this.isComponentActive = false;
   }
 
   focusPreviousCategory() {
-    if (this.focusedCategoryIndex > 0) {
+    if (this.focusedCategoryIndex && this.focusedCategoryIndex > 0) {
       this.focusedCategoryIndex--;
       this.setFocusOnCategory(this.focusedCategoryIndex);
     }
   }
 
   focusNextCategory() {
-    if (this.focusedCategoryIndex < this.categories.length - 1) {
+    if(this.focusedCategoryIndex === undefined) {
+      this.focusedCategoryIndex = 0;
+      this.setFocusOnCategory(this.focusedCategoryIndex);
+    }else if (this.focusedCategoryIndex < this.categories.length - 1) {
       this.focusedCategoryIndex++;
       this.setFocusOnCategory(this.focusedCategoryIndex);
     }
@@ -74,6 +82,8 @@ export class CategoryComponent implements OnInit, OnDestroy{
 
   @HostListener('window:keydown', ['$event'])
   onKeydown(e: KeyboardEvent) {
+    if (!this.isComponentActive) return;
+
     switch (e.key) {
       case 'ArrowUp':
       case 'ArrowLeft':
@@ -84,7 +94,7 @@ export class CategoryComponent implements OnInit, OnDestroy{
         this.focusNextCategory();
         break;
       case 'Enter':
-        this.onSelectCategory(this.focusedCategoryIndex);
+        this.focusedCategoryIndex !== undefined ? this.onSelectCategory(this.focusedCategoryIndex) : null;
         break;
       case 'Escape':
         this.onBack();

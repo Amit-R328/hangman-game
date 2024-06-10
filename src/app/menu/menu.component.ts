@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
@@ -44,4 +44,24 @@ export class MenuComponent implements OnInit {
     this.quitGame.emit();
   }
 
+  @HostListener('window:keydown', ['$event'])
+  onKeydown(e: KeyboardEvent) {
+    if (e.key === 'Enter') {
+      switch (this.menuType) {
+        case 'paused':
+          this.continueGame.emit();
+          break;
+        case 'lose':
+          this.playAgain.emit();
+          break;
+        case 'win':
+          this.newCategory.emit();
+          break;
+      }
+    }else if (e.key === 'Escape') {
+      this.quitGame.emit();
+    }else if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+      this.newCategory.emit();
+    }
+  }
 }
