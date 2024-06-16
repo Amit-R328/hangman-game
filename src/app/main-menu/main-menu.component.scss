@@ -8,10 +8,20 @@
     .mainMenu {
         height: 59.56%;
         width: 41.12%;
+
+        @include respond-to(phone) {
+            width: 85.12%;
+        }
+
         .play-wrapper-outer {
             background: rgb(52,74,186);
             background: linear-gradient(180deg, rgba(52, 74, 186, 1) 0%,  rgba(0, 20, 121, 0.83) 100%);    
             height: 81%;
+
+            @include respond-to(phone) {
+                height: 100%;
+            }
+
             position: relative;
             top: 14%;
             border-radius: 60px;
@@ -23,6 +33,12 @@
             gap: 40px;
             button {
                 width: 27%;
+
+                @include respond-to(phone) {
+                    width: 75%;
+                    margin-top: 15px;
+                }
+                
                 height: 10%;
                 background-color: $blue;
                 border-radius: 50px;
@@ -43,11 +59,22 @@
             position: absolute;
             left: 40%;
             bottom: 64%;
+
+            @include respond-to(phone) {
+                left: 15%;
+                width: 70%;
+            }
         }
         .play-inner {
            background: linear-gradient(to bottom, #FE71FE 0%, #7199FF 100%);
            width: 25%;
            height: 37%;
+
+              @include respond-to(phone) {
+                width: 50%;
+                height: 30%;
+              }
+
            border-radius: 50%;
            display: flex;
            align-items: center;

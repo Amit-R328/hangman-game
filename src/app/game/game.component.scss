@@ -10,6 +10,10 @@
         flex-direction: column;
         gap: 100px;
 
+        @include respond-to(tablet) {
+            gap: 20%;
+        }
+
         @include respond-to(phone) {
             gap: clamp(20px, 65px, 100px);
         }
@@ -120,10 +124,16 @@
             gap: 65px;
             margin-bottom: 40px;
 
+            @include respond-to(tablet) {
+                gap: 20px;
+                margin-bottom: unset;
+            }
+
             @include respond-to(phone) {
                 gap: clamp(20px, 40px, 65px);
                 margin-bottom: 20px;
             }
+
             .word-display {
                 display: flex;
                 align-items: center;
@@ -133,8 +143,13 @@
                 font-family: $font;
                 font-size: 64px;
 
+                @include respond-to(tablet) {
+                    font-size: 48px;
+                    margin-bottom: 1%;
+                }
+
                 @include respond-to(phone) {
-                    font-size: 40px;
+                    font-size: 32px;
                 }
 
                 color: $white;
@@ -172,6 +187,14 @@
                 flex-wrap: wrap;
                 gap: 27px;
                 width: 885px;
+
+                @include respond-to(tablet) {
+                    margin: 20px 20px 0 20px;
+                    width: unset;
+                    column-gap: 8px;
+                    row-gap: 24px;
+                }
+
 
                 @include respond-to(phone) {
                     margin: 20px;
