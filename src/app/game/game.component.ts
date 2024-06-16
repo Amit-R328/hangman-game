@@ -22,7 +22,7 @@ export class GameComponent implements OnInit, OnDestroy {
   currentWord: string = '';
   displayedWord: (string | null)[][] = [];
   pickedLetters: string[] = [];
-  totalLives: number = 8;
+  totalLives: number = 7;
   remianingLives: number = this.totalLives;
   subscriptions: Subscription[] = [];
   isPaused: boolean = false;

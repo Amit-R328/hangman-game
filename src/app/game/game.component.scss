@@ -145,7 +145,7 @@
 
                 @include respond-to(tablet) {
                     font-size: 48px;
-                    margin-bottom: 1%;
+                    margin-bottom: unset;
                 }
 
                 @include respond-to(phone) {
@@ -159,11 +159,16 @@
                     span {
                         width: 70px;
 
+                        @include respond-to(tablet) {
+                            height: 90px;
+                        }
+
                         @include respond-to(phone) {
                             width: 35px;
                             height: 64px;
                             border-radius: 12px;
                         }
+
 
                         height: 100px;
                         border-radius: 17px;
@@ -207,6 +212,11 @@
                     width: 65px;
                     height: 85px;
 
+                    @include respond-to(tablet) {
+                        width: 50px;
+                        height: 65px;
+                    }
+                    
                     @include respond-to(phone) {
                         width: 30px;
                         height: 57px;
