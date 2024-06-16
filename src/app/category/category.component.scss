@@ -7,17 +7,38 @@
   flex-direction: column;
   gap: 220px;
 
+  @include respond-to(tablet) {
+    gap: 100px;
+  }
+
   .top {
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 1rem 2rem;
 
+    @include respond-to(tablet) {
+      padding: 80px 0px 0px 40px;
+    }
+
+    @include respond-to(phone) {
+      padding: 1rem 2rem;
+      margin-top: 60px;
+    }
+
     .title-wrapper {
       margin: 0 auto;
 
       .title {
         height: 136px;
+
+        @include respond-to(tablet) {
+          height: 110px;
+        }
+
+        @include respond-to(phone) {
+          height: 48px;
+        }
       }
     }
 
@@ -30,6 +51,22 @@
       align-items: center;
       justify-content: center;
       border-radius: 100%;
+
+      @include respond-to(tablet) {
+        width: 64px;
+        height: 64px;
+      }
+
+      @include respond-to(phone) {
+        width: 40px;
+        height: 40px;
+      }
+
+      img {
+        @include respond-to(tablet, phone) {
+          width: 50%;
+        }
+      }
     }
   }
 
@@ -39,6 +76,16 @@
     gap: 6.5rem;
     justify-content: center; 
     align-items: center;
+
+    @include respond-to(tablet) {
+      grid-template-columns: repeat(2, 324px);
+      gap: 32px;
+    }
+
+    @include respond-to(phone) {
+      grid-template-columns: repeat(1, 324px);
+      gap: 32px;
+    }
 
     .category {
       background-color: $blue;
@@ -55,12 +102,26 @@
       align-items: center;
       justify-content: center;
       transition: background-color 0.3s;
-      box-shadow: inset 6px 11px 0px -4px #3C74FF, inset -6px 12px 0px -4px #3C74FF;
+      box-shadow: inset 6px 11px 0px -4px #3C74FF, inset -6px 12px 0px -4px #3C74FF, inset 3px -4px 2px -0.1px #140E66;
       transition: 0.8s;
       
       &:hover, &:focus, &.focused {
         background-color: rgb(86 132 247 / 80%);;
         cursor: pointer;
+      }
+
+      @include respond-to(tablet) {
+        height: 183px;
+        width: 324px;
+        padding: unset;
+        border-radius: 40px;
+      }
+
+      @include respond-to(phone) {
+        height: 77px;
+        border-radius: 20px;
+        font-size: 24px;
+        box-shadow: inset 6px 9px 0px -4px #3C74FF, inset -6px 5px 0px -4px #3C74FF, inset 0px -4px 2px -0.1px #140E66;
       }
     }
   }
