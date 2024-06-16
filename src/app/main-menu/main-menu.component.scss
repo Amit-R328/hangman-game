@@ -9,6 +9,10 @@
         height: 59.56%;
         width: 41.12%;
 
+        @include respond-to(tablet) {
+            width: 71.12%;
+        }
+       
         @include respond-to(phone) {
             width: 85.12%;
         }
@@ -34,11 +38,16 @@
             button {
                 width: 27%;
 
+                @include respond-to(tablet) {
+                    width: 45%;
+                    margin-top: 10px;
+                }
+
                 @include respond-to(phone) {
                     width: 75%;
                     margin-top: 15px;
                 }
-                
+
                 height: 10%;
                 background-color: $blue;
                 border-radius: 50px;
@@ -60,6 +69,10 @@
             left: 40%;
             bottom: 64%;
 
+            @include respond-to(tablet) {
+                left: 26%
+            }
+
             @include respond-to(phone) {
                 left: 15%;
                 width: 70%;
@@ -70,10 +83,16 @@
            width: 25%;
            height: 37%;
 
-              @include respond-to(phone) {
+            @include respond-to(tablet) {
+                width: 35%;
+                height: 36%;
+                margin-top: 20px;
+            }
+
+            @include respond-to(phone) {
                 width: 50%;
                 height: 30%;
-              }
+            }
 
            border-radius: 50%;
            display: flex;
