@@ -7,11 +7,11 @@ import { Observable } from 'rxjs';
 })
 export class CategoryService {
 
-  private categoriesUrl = './assets/data.json';
+  public basePath = window.location.pathname.includes('hangman-game') ? '/hangman-game/assets/data.json' : '/assets/data.json';
 
   constructor( private http: HttpClient) { }
 
   getCategories(): Observable<any> {
-    return this.http.get<any>(this.categoriesUrl);
+    return this.http.get<any>(this.basePath);
   }
 }
