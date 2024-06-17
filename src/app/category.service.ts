@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class CategoryService {
 
-  private categoriesUrl = '../assets/data.json';
+  private categoriesUrl = './assets/data.json';
 
   constructor( private http: HttpClient) { }
 
