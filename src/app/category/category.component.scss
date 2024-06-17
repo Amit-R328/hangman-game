@@ -11,6 +11,10 @@
     gap: 100px;
   }
 
+  @include respond-to(phone) {
+    gap: 50px;
+  }
+
   .top {
     display: flex;
     flex-direction: row;
