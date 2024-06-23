@@ -12,7 +12,7 @@
   }
 
   @include respond-to(phone) {
-    gap: 50px;
+    gap: 30px;
   }
 
   .top {
@@ -27,7 +27,6 @@
 
     @include respond-to(phone) {
       padding: 1rem 2rem;
-      margin-top: 60px;
     }
 
     .title-wrapper {
